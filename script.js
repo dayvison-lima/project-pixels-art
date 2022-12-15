@@ -1,13 +1,3 @@
-// const createTitle = () => {
-//     const genTitle = document.createElement('h1');
-//     genTitle.innerText = 'Paleta de Cores';
-//     body.appendChild(genTitle);
-// };
-
-// window.onload = () => {
-//     createTitle();
-// };
-
 const bodyElement = document.body;
 
 const createTitle = () => {
@@ -85,10 +75,7 @@ const createButton = () => {
   bodyElement.appendChild(createButton);
 };
 
-// const buttonToggle = () => {
-//   const colorButton = document.querySelector('#button-random-color');
-//   colorButton.addEventListener('click', paintPalette);
-// };
+
 
 
 
@@ -100,23 +87,23 @@ const paintPaletteStorage = () => {
   };
 };
 
-const PaletteSelectedToggle = (event) => {
-  const palette = document.querySelectorAll('.color');
-  for (let index = 0; index < palette.length; index += 1){
-    if(palette[index].classList.contains('selected')){
-      palette[index].classList.remove('selected');
-    };
-  };
+// const PaletteSelectedToggle = (event) => {
+//   const palette = document.querySelectorAll('.color');
+//   for (let index = 0; index < palette.length; index += 1){
+//     if(palette[index].classList.contains('selected')){
+//       palette[index].classList.remove('selected');
+//     };
+//   };
 
-  event.target.classList.add('selected');
-};
+//   event.target.classList.add('selected');
+// };
 
-const paletteEventListener = () => {
-  const palette = document.querySelectorAll('.color');
-  for (let index = 0; index < palette.length; index += 1){
-    palette[index].addEventListener('click', PaletteSelectedToggle);
-  };
-};
+// const paletteEventListener = () => {
+//   const palette = document.querySelectorAll('.color');
+//   for (let index = 0; index < palette.length; index += 1){
+//     palette[index].addEventListener('click', PaletteSelectedToggle);
+//   };
+// };
 
 const createBoard = () => {
   const createDiv = document.createElement('div');
@@ -159,10 +146,8 @@ window.onload = () => {
   
   createBoard();
   paintPaletteStorage();
-  PaletteSelectedToggle();
-  paletteEventListener();
-  buttonToggle();
-
-
+  
+  // paletteEventListener();
+  
   
 };
