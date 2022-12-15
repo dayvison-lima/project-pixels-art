@@ -2,3 +2,9 @@
     display: inline-block;
     margin: 5px
 }
+
+.pixel{
+    display: inline-block;
+    margin: 0px;
+}
+

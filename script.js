@@ -61,7 +61,7 @@ const paintPalette = () => {
     if (palette[0] === palette[index]){
       palette[index].style.backgroundColor = 'black';
     } 
-     else if (randomColor !== 'rgb(255, 255, 255)' && randomColor !== 'rgb(0, 0, 0)'){
+     else if (randomColor !== 255 && randomColor !== 0 ){
       palette[index].style.backgroundColor = randomColor();
     };
   };
@@ -118,14 +118,24 @@ const createButton = () => {
 const createBoard = () => {
   const createDiv = document.createElement('div');
   createDiv.id = 'pixel-board';
-  createDiv.style.border = '1px solid black';
-  createDiv.style.width = '125px';
-  createDiv.style.height = '125px';
-  createDiv.style.backgroundColor = 'white';
-
-  
+  // createDiv.style.border = '1px solid black';
+  createDiv.style.width = '250px';
+  createDiv.style.height = '250px';
   
   bodyElement.appendChild(createDiv);
+  for(let index = 0; index < 25; index += 1){
+    const createPixel = document.createElement('div');
+    createPixel.className = 'pixel';
+    createPixel.style.backgroundColor = 'white';
+    createPixel.style.width = '40px';
+    createPixel.style.height = '40px'
+    createPixel.style.border = '1px solid black';
+  
+
+    createDiv.appendChild(createPixel);
+  }
+  
+  
 };
 
 // let button = document.querySelector('#');
