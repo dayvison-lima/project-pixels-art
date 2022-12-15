@@ -68,6 +68,22 @@ const paintPalette = () => {
   savePaletteLocalStorage();
 }
 
+const paintPaletteStorage = () => {
+  const palette = document.querySelectorAll('.color');
+  const paletteStorage = JSON.parse(localStorage.getItem('colorPalette'));
+  for (let index = 0; index < palette.length; index += 1){
+    palette[index].style.backgroundColor = paletteStorage[index];
+  };
+};
+
+const palettePainted = () => {
+  if(localStorage.getItem('colorPalette') === null){
+    paintPalette();
+  } else {
+    paintPaletteStorage();
+  }
+}
+
 const createButton = () => {
   const createButton = document.createElement('button');
   createButton.innerText = 'Cores aleatórias';
@@ -79,13 +95,7 @@ const createButton = () => {
 
 
 
-const paintPaletteStorage = () => {
-  const palette = document.querySelectorAll('.color');
-  const paletteStorage = JSON.parse(localStorage.getItem('colorPalette'));
-  for (let index = 0; index < palette.length; index += 1){
-    palette[index].style.backgroundColor = paletteStorage[index];
-  };
-};
+
 
 // const PaletteSelectedToggle = (event) => {
 //   const palette = document.querySelectorAll('.color');
@@ -131,21 +141,27 @@ const createBoard = () => {
 window.onload = () => {
 
   
-
+  
   createTitle();
   genPalette();
   randomColor();
-  
-  saveLocalStorage();
+  palettePainted();
   savePaletteLocalStorage();
-  paintPalette();
+  saveLocalStorage();
+
+
+  
+  
+  
+  
+  
   createButton();
 
   const colorButton = document.getElementById('button-random-color');
   colorButton.addEventListener('click', paintPalette);
   
   createBoard();
-  paintPaletteStorage();
+  
   
   // paletteEventListener();
   
