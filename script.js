@@ -61,7 +61,7 @@ const paintPalette = () => {
     if (palette[0] === palette[index]){
       palette[index].style.backgroundColor = 'black';
     } 
-     else if (randomColor !== 255 && randomColor !== 0 ){
+     else if (randomColor !== 255){
       palette[index].style.backgroundColor = randomColor();
     };
   };
