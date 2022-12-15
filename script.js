@@ -32,17 +32,18 @@ const genPalette = (div) => {
         createDiv.style.width = '40px';
         createDiv.style.height = '40px';
 
+        if(index === 0){
+          createDiv.classList.add('selected');
+        };
+
+        
+
         createPalette.appendChild(createDiv);
 
     };
 };
 
-// const createPalette = () => {
-//     const createDiv = document.createElement('div');
 
-
-    
-// }
 
 const randomColor = () => {
   const color = Math.floor(Math.random() * 16777215).toString(16);
@@ -59,20 +60,72 @@ const savePaletteLocalStorage = () => {
   for (let index = 0; index < palette.length; index += 1){
     paletteArray.push(palette[index].style.backgroundColor);
   };
-  saveLocalStorage('colors', JSON.stringify(paletteArray));
+  saveLocalStorage('colorPalette', JSON.stringify(paletteArray));
 };
 
 const paintPalette = () => {
   const palette = document.querySelectorAll('.color');
+  
+
   for (let index = 0; index < palette.length; index += 1){
     if (palette[0] === palette[index]){
       palette[index].style.backgroundColor = 'black';
-    } else {
+    } 
+     else if (randomColor !== 'rgb(255, 255, 255)' && randomColor !== 'rgb(0, 0, 0)'){
       palette[index].style.backgroundColor = randomColor();
     };
   };
   savePaletteLocalStorage();
 }
+
+const createButton = () => {
+  const createDiv = document.createElement('div');
+  const createButton = document.createElement('button');
+  createButton.innerText = 'Cores aleatórias';
+  createButton.id = 'button-random-color';
+  createDiv.appendChild(createButton);
+  bodyElement.appendChild(createDiv);
+};
+
+const paintPaletteStorage = () => {
+  const palette = document.querySelectorAll('.color');
+  const paletteStorage = JSON.parse(localStorage.getItem('colorPalette'));
+  for (let index = 0; index < palette.length; index += 1){
+    palette[index].style.backgroundColor = paletteStorage[index];
+  };
+};
+
+const PaletteSelectedToggle = (event) => {
+  const palette = document.querySelectorAll('.color');
+  for (let index = 0; index < palette.length; index += 1){
+    if(palette[index].classList.contains('selected')){
+      palette[index].classList.remove('selected');
+    };
+  };
+
+  event.target.classList.add('selected');
+};
+
+const paletteEventListener = () => {
+  const palette = document.querySelectorAll('.color');
+  for (let index = 0; index < palette.length; index += 1){
+    palette[index].addEventListener('click', PaletteSelectedToggle);
+  };
+};
+
+const createBoard = () => {
+  const createDiv = document.createElement('div');
+  createDiv.id = 'pixel-board';
+  createDiv.style.border = '1px solid black';
+  createDiv.style.width = '125px';
+  createDiv.style.height = '125px';
+  createDiv.style.backgroundColor = 'white';
+
+  
+  
+  bodyElement.appendChild(createDiv);
+};
+
 
 
 
@@ -83,4 +136,10 @@ window.onload = () => {
   saveLocalStorage();
   savePaletteLocalStorage();
   paintPalette();
+  createButton();
+  createBoard();
+  paintPaletteStorage();
+  PaletteSelectedToggle();
+  paletteEventListener();
+  
 };
