@@ -93,6 +93,15 @@ const createButton = () => {
   bodyElement.appendChild(createButton);
 };
 
+const createResetButton = () => {
+  const createResetButton = document.createElement('button');
+  createResetButton.innerText = 'Limpar';
+  createResetButton.id = 'clear-board';
+  bodyElement.appendChild(createResetButton);
+};
+
+
+
 const createBoard = () => {
   const createDiv = document.createElement('div');
   createDiv.id = 'pixel-board';
@@ -147,6 +156,19 @@ const pintar = () => {
   };
 };
 
+const resetBoard = () => {
+  const pixels = document.querySelectorAll('.pixel');
+  
+
+  for (let index = 0; index < pixels.length; index += 1){
+    if (pixels){
+      pixels[index].style.backgroundColor = 'white';
+    };
+  };
+
+  
+};
+
 
 
 
@@ -173,6 +195,12 @@ window.onload = () => {
 
   const colorButton = document.getElementById('button-random-color');
   colorButton.addEventListener('click', paintPalette);
+
+  createResetButton();
+
+  const resetButton = document.querySelector('#clear-board');
+  resetButton.addEventListener('click', resetBoard);
+  
   
   createBoard();
   selecionado();
