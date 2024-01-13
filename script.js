@@ -1,6 +1,9 @@
+// eslint-disable-next-line max-lines
 /* eslint-disable editorconfig/editorconfig */
 const bodyElement = document.body;
 const btnRandomColor = 'button-random-color';
+const sizeBoard = 'board-size';
+const pixelBoard = 'pixel-board';
 
 // Função para criar o container principal
 const createDivContainer = () => {
@@ -165,8 +168,8 @@ const createBoardSizeInput = () => {
   const divContainer = document.getElementById('container');
   const input = document.createElement('input');
   input.type = 'number';
-  input.id = 'board-size';
-  input.className = 'board-size';
+  input.id = sizeBoard;
+  input.className = sizeBoard;
   input.placeholder = 'Tamanho do quadro';
   divContainer.appendChild(input);
 };
@@ -175,32 +178,45 @@ const createBoardSizeInput = () => {
 const loadBoardSizeLocalStorage = () => localStorage.getItem('boardSize');
 
 // Função para criar o board personalizado
-const createBoardCustom = () => {
-  const savedBoardSizeLocalStorage = loadBoardSizeLocalStorage();
-  const size = savedBoardSizeLocalStorage ? parseInt(savedBoardSizeLocalStorage, 10) : 5;
-
+const createBoardContainer = () => {
   const divContainer = document.getElementById('container');
-  let existingBoard = document.getElementById('pixel-board');
+  let existingBoard = document.getElementById(pixelBoard);
 
   if (existingBoard) {
     existingBoard.innerHTML = ''; // Limpa o conteúdo existente
   } else {
     existingBoard = document.createElement('div');
-    existingBoard.id = 'pixel-board';
-    existingBoard.className = 'pixel-board';
+    existingBoard.id = pixelBoard;
+    existingBoard.className = pixelBoard;
     divContainer.appendChild(existingBoard);
   }
 
-  existingBoard.style.gridTemplateColumns = `repeat(${size}, 40px)`;
-  existingBoard.style.gridTemplateRows = `repeat(${size}, 40px)`;
+  return existingBoard;
+};
+
+// Função para criar os elementos de pixel no board
+const createPixelElements = (size, existingBoard) => {
+  const existingBoardLoad = existingBoard;
+  existingBoardLoad.style.gridTemplateColumns = `repeat(${size}, 40px)`;
+  existingBoardLoad.style.gridTemplateRows = `repeat(${size}, 40px)`;
 
   for (let index = 0; index < size * size; index += 1) {
     const createPixel = document.createElement('div');
     createPixel.className = 'pixel';
     createPixel.style.backgroundColor = 'white';
     createPixel.style.border = '1px solid black';
-    existingBoard.appendChild(createPixel);
+    existingBoardLoad.appendChild(createPixel);
   }
+};
+
+// Função para criar o board personalizado
+const createBoardCustom = () => {
+  const savedBoardSizeLocalStorage = loadBoardSizeLocalStorage();
+  const size = savedBoardSizeLocalStorage ? parseInt(savedBoardSizeLocalStorage, 10) : 5;
+
+  const existingBoard = createBoardContainer();
+  createPixelElements(size, existingBoard);
+  saveLocalStorage('boardSize', size);
 };
 
 // Função para limitar o tamanho do board
@@ -224,7 +240,9 @@ const generateBoard = () => {
     return;
   }
 
-  saveLocalStorage('boardSize', size);
+  const limite = limitBoardSize(size);
+
+  saveLocalStorage('boardSize', limite);
   createBoardCustom();
   pintar();
   selecionado();
