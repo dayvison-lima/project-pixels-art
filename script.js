@@ -1,9 +1,11 @@
 /* eslint-disable editorconfig/editorconfig */
 const bodyElement = document.body;
+const btnRandomColor = 'button-random-color';
 
 const createTitle = () => {
   const genTitle = document.createElement('h1');
   genTitle.id = 'title';
+  genTitle.className = 'title';
   genTitle.innerText = 'Paleta de Cores';
   bodyElement.appendChild(genTitle);
 };
@@ -16,7 +18,6 @@ const genPalette = () => {
   for (let index = 0; index < 4; index += 1) {
     const createDiv = document.createElement('div');
     createDiv.className = `color color${index}`;
-    createDiv.style.border = '1px solid black';
     createDiv.style.width = '40px';
     createDiv.style.height = '40px';
 
@@ -59,6 +60,12 @@ const paintPalette = () => {
   savePaletteLocalStorage();
 };
 
+const pincel = () => {
+  const corPincel = document.querySelector('.selected').style.backgroundColor;
+
+  return corPincel;
+};
+
 const paintPaletteStorage = () => {
   const palette = document.querySelectorAll('.color');
   const paletteStorage = JSON.parse(localStorage.getItem('colorPalette'));
@@ -78,22 +85,23 @@ const palettePainted = () => {
 const createButton = () => {
   const createBtn = document.createElement('button');
   createBtn.innerText = 'Cores aleatórias';
-  createBtn.id = 'button-random-color';
+  createBtn.id = btnRandomColor;
+  createBtn.className = btnRandomColor;
   bodyElement.appendChild(createBtn);
 };
 
 const createResetButton = () => {
   const createResetBtn = document.createElement('button');
   createResetBtn.innerText = 'Limpar';
-  createResetBtn.id = 'clear-board';
+  createResetBtn.id = 'button-clear-board';
+  createResetBtn.className = 'button-clear-board';
   bodyElement.appendChild(createResetBtn);
 };
 
 const createBoard = () => {
   const createDiv = document.createElement('div');
   createDiv.id = 'pixel-board';
-  createDiv.style.width = '250px';
-  createDiv.style.height = '250px';
+  createDiv.className = 'pixel-board';
 
   bodyElement.appendChild(createDiv);
 
@@ -123,13 +131,9 @@ const selecionado = () => {
   }
 };
 
-const pincel = () => {
-  const corPincel = document.querySelector('.selected').style.backgroundColor;
-  return corPincel;
-};
-
 const pintar = () => {
   const pixels = document.querySelectorAll('.pixel');
+
   for (let index = 0; index < pixels.length; index += 1) {
     pixels[index].addEventListener('click', () => {
       pixels[index].style.backgroundColor = pincel();
@@ -147,20 +151,21 @@ const resetBoard = () => {
   }
 };
 
+savePaletteLocalStorage();
+saveLocalStorage();
+
 window.onload = () => {
   createTitle();
   genPalette();
+  createBoard();
   randomColor();
   palettePainted();
-  savePaletteLocalStorage();
-  saveLocalStorage();
   createButton();
-  const colorButton = document.getElementById('button-random-color');
+  const colorButton = document.getElementById(btnRandomColor);
   colorButton.addEventListener('click', paintPalette);
   createResetButton();
-  const resetButton = document.querySelector('#clear-board');
+  const resetButton = document.querySelector('#btn-clear-board');
   resetButton.addEventListener('click', resetBoard);
-  createBoard();
   selecionado();
   pintar();
 };
