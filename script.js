@@ -1,5 +1,4 @@
-// eslint-disable-next-line max-lines
-/* eslint-disable editorconfig/editorconfig */
+/* eslint-disable max-lines */
 const bodyElement = document.body;
 const btnRandomColor = 'button-random-color';
 const sizeBoard = 'board-size';
