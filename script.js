@@ -2,6 +2,7 @@
 const bodyElement = document.body;
 const btnRandomColor = 'button-random-color';
 
+// Função para criar o container principal
 const createDivContainer = () => {
   const divContainer = document.createElement('div');
   divContainer.id = 'container';
@@ -9,6 +10,7 @@ const createDivContainer = () => {
   bodyElement.appendChild(divContainer);
 };
 
+// Função para criar o título
 const createTitle = () => {
   const divContainer = document.getElementById('container');
   const genTitle = document.createElement('h1');
@@ -18,6 +20,7 @@ const createTitle = () => {
   divContainer.appendChild(genTitle);
 };
 
+// Função para gerar a paleta de cores
 const genPalette = () => {
   const divContainer = document.getElementById('container');
   const createPalette = document.createElement('div');
@@ -38,15 +41,18 @@ const genPalette = () => {
   }
 };
 
+// Função para gerar uma cor aleatória
 const randomColor = () => {
   const color = Math.floor(Math.random() * 16777215).toString(16);
   return `#${color}`;
 };
 
+// Função para salvar no Local Storage
 const saveLocalStorage = (key, value) => {
   localStorage.setItem(key, value);
 };
 
+// Função para salvar a paleta de cores no Local Storage
 const savePaletteLocalStorage = () => {
   const palette = document.querySelectorAll('.color');
   const paletteArray = [];
@@ -56,6 +62,7 @@ const savePaletteLocalStorage = () => {
   saveLocalStorage('colorPalette', JSON.stringify(paletteArray));
 };
 
+// Função para pintar a paleta de cores a partir do Local Storage
 const paintPaletteStorage = () => {
   const palette = document.querySelectorAll('.color');
   const paletteStorage = JSON.parse(localStorage.getItem('colorPalette'));
@@ -64,6 +71,7 @@ const paintPaletteStorage = () => {
   }
 };
 
+// Função para pintar a paleta de cores aleatoriamente
 const paintPalette = () => {
   const palette = document.querySelectorAll('.color');
 
@@ -71,12 +79,13 @@ const paintPalette = () => {
     if (palette[0] === palette[index]) {
       palette[index].style.backgroundColor = 'black';
     } else {
-      palette[index].style.backgroundColor = randomColor(); // Corrigido aqui
+      palette[index].style.backgroundColor = randomColor();
     }
   }
   savePaletteLocalStorage();
 };
 
+// Função para resetar o board
 const resetBoard = () => {
   const pixels = document.querySelectorAll('.pixel');
 
@@ -87,11 +96,13 @@ const resetBoard = () => {
   }
 };
 
+// Função para obter a cor do pincel
 const pincel = () => {
   const corPincel = document.querySelector('.selected').style.backgroundColor;
   return corPincel;
 };
 
+// Função para verificar se há uma paleta de cores salva e pintar
 const palettePainted = () => {
   if (localStorage.getItem('colorPalette') === null) {
     paintPalette();
@@ -100,6 +111,7 @@ const palettePainted = () => {
   }
 };
 
+// Função para criar o botão de cores aleatórias
 const createButton = () => {
   const divContainer = document.getElementById('container');
   const createBtn = document.createElement('button');
@@ -110,6 +122,7 @@ const createButton = () => {
   createBtn.addEventListener('click', paintPalette);
 };
 
+// Função para criar o botão de resetar o board
 const createResetButton = () => {
   const divContainer = document.getElementById('container');
   const createResetBtn = document.createElement('button');
@@ -120,6 +133,7 @@ const createResetButton = () => {
   createResetBtn.addEventListener('click', resetBoard);
 };
 
+// Função para adicionar o evento de seleção de cor
 const selecionado = () => {
   const tintas = document.querySelectorAll('.color');
 
@@ -135,6 +149,7 @@ const selecionado = () => {
   }
 };
 
+// Função para adicionar o evento de pintura no pixel
 const pintar = () => {
   const pixels = document.querySelectorAll('.pixel');
 
@@ -145,6 +160,7 @@ const pintar = () => {
   }
 };
 
+// Função para criar a entrada de tamanho do board
 const createBoardSizeInput = () => {
   const divContainer = document.getElementById('container');
   const input = document.createElement('input');
@@ -155,9 +171,14 @@ const createBoardSizeInput = () => {
   divContainer.appendChild(input);
 };
 
+// Função para carregar o tamanho do board do Local Storage
 const loadBoardSizeLocalStorage = () => localStorage.getItem('boardSize');
 
-const createBoardCustom = (size = 5) => {
+// Função para criar o board personalizado
+const createBoardCustom = () => {
+  const savedBoardSizeLocalStorage = loadBoardSizeLocalStorage();
+  const size = savedBoardSizeLocalStorage ? parseInt(savedBoardSizeLocalStorage, 10) : 5;
+
   const divContainer = document.getElementById('container');
   let existingBoard = document.getElementById('pixel-board');
 
@@ -180,9 +201,9 @@ const createBoardCustom = (size = 5) => {
     createPixel.style.border = '1px solid black';
     existingBoard.appendChild(createPixel);
   }
-
 };
 
+// Função para limitar o tamanho do board
 const limitBoardSize = (size) => {
   const minSize = 5;
   const maxSize = 50;
@@ -193,9 +214,9 @@ const limitBoardSize = (size) => {
   return size;
 };
 
+// Função para gerar o board
 const generateBoard = () => {
   const boardSize = document.getElementById('board-size');
-  const savedBoardSizeLocalStorage = loadBoardSizeLocalStorage();
   const size = parseInt(boardSize.value, 10);
 
   if (Number.isNaN(size) || size <= 0) {
@@ -203,35 +224,36 @@ const generateBoard = () => {
     return;
   }
 
-  const limitSize = savedBoardSizeLocalStorage || limitBoardSize(size);
-  saveLocalStorage('boardSize', limitSize);
-  createBoardCustom(limitSize);
+  saveLocalStorage('boardSize', size);
+  createBoardCustom();
   pintar();
   selecionado();
 };
 
+// Função para criar o botão de gerar board
 const createGenerateBoardButton = () => {
   const divContainer = document.getElementById('container');
   const btnCreateBoard = document.createElement('button');
   btnCreateBoard.id = 'generate-board';
-  btnCreateBoard.textContent = 'VQV';
+  btnCreateBoard.textContent = 'Gerar quadro';
   btnCreateBoard.addEventListener('click', generateBoard);
   divContainer.appendChild(btnCreateBoard);
 };
 
-window.onload = function () {
+// Função principal para inicializar tudo ao carregar a página
+const initialize = () => {
   createDivContainer();
   createBoardSizeInput();
   createGenerateBoardButton();
   createTitle();
   genPalette();
-  paintPaletteStorage();
-  createBoardCustom();
   palettePainted();
+  createBoardCustom();
   createButton();
   createResetButton();
   selecionado();
   pintar();
-  savePaletteLocalStorage();
-  paintPaletteStorage();
 };
+
+// Carregar elementos ao carregar a página
+window.onload = initialize;

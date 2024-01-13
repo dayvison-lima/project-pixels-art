@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
 body{
   background: url('./imgs/pixel-lofi-city-moewalls-com.gif') center/cover no-repeat fixed;
   overflow-y: auto;
@@ -21,11 +23,12 @@ body{
     cursor: pointer;
     border-radius: 50%;
     transition: transform 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 .selected {
     border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.5);
     transform: scale(1.1); 
   }
 
@@ -36,7 +39,8 @@ body{
 }
 
 .title{
-  color: blue;  
+  color: black;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .pixel-board-container {
