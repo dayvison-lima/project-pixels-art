@@ -34,7 +34,7 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 
 ## O que foi desenvolvido
 
-- No projeto temos uma página em que o usuário pode criar um quadro de pixels de tamanho personalizado e pint-alo, com cores novas a cada clique, com elementos html inteiramente feitos manipulando o DOM
+- No projeto temos uma página em que o usuário pode criar um quadro de pixels de tamanho personalizado e pintar os pixels, com cores novas a cada clique do botão, com elementos html inteiramente feitos manipulando o DOM
 
 ---
 
