@@ -8,12 +8,12 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 
 ## Sumário
 
-- [Tecnologias usadas](#tecnologias)
+- [Demonstração](#desmontração-de-uso)
+- [Tecnologias usadas](#tecnologias-usadas)
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
 - [Habilidades](#habilidades)
 - [Antes de inicializar a aplicação](#antes-de-inicializar-a-aplicação)
-- [Demonstração](#desmontração-de-uso)
-- [Requisitos](#Requisitos)
+- [Requisitos](#Requisitos-obrigatorios)
 
 ---
 
