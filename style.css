@@ -1,13 +1,17 @@
-body {
+body{
+  background: url('./imgs/pixel-lofi-city-moewalls-com.gif') center/cover no-repeat fixed;
+  overflow-y: auto;
+}
+
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: url('./imgs/pixel-lofi-city-moewalls-com.gif') center/cover no-repeat fixed;
 }
 
 .color{
@@ -35,9 +39,14 @@ body {
   color: blue;  
 }
 
+.pixel-board-container {
+  max-height: 70vh;  /* Define a altura máxima em relação à altura da viewport */
+}
+
 .pixel-board{
     display: grid;
     grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
     gap: 0px;
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -53,24 +62,25 @@ button {
     transition: background-color 0.3s ease-in-out;
   }
   
-  button:hover {
+button:hover {
     background-color: #ddd;
   }
 
-.btn-random-color{
+.button-random-color{
     background-color: #4caf50;
     color: #fff;
+    margin-top: 10px;
 }
 
-#btn-random-color:hover {
+#button-random-color:hover {
     background-color: #45a049;
   }
 
-.btn-clear-color{
+.button-clear-color{
     background-color: #f44336;
     color: #fff;
 }
 
-.btn-clear-board:hover {
+.button-clear-board:hover {
     background-color: #d32f2f;
   }
