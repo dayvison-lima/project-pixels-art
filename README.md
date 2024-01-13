@@ -13,7 +13,7 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 - [O que foi desenvolvido](#o-que-foi-desenvolvido)
 - [Habilidades](#habilidades)
 - [Antes de inicializar a aplicação](#antes-de-inicializar-a-aplicação)
-- [Requisitos](#Requisitos-obrigatorios)
+- [Requisitos](#requisitos-obrigatórios)
 
 ---
 
