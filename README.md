@@ -64,7 +64,7 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 ---
 
 ##  Requisitos Obrigatórios
----
+
 ### 1 - Adicione à página o título "Paleta de Cores".
 
 ### 2 - Adicione à página uma paleta contendo quatro cores distintas.
