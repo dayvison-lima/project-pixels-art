@@ -1,5 +1,5 @@
 # Pixel-Art-Trybe
-
+---
 ## Descrição
 
 Este projeto foi desenvolvido durante o período de curso da Trybe🚀
@@ -96,6 +96,3 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 ### 14 - Crie uma função que limite o tamanho mínimo e máximo do quadro de pixels.
 ---
 ### 15 - Crie uma função para manter o tamanho novo do board ao recarregar a página.
-
-
-
