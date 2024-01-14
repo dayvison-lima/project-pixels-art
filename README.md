@@ -48,7 +48,7 @@ Este projeto foi desenvolvido durante o período de curso da Trybe🚀
 
 ---
 
-## ANTES DE INICIALIZAR A APLICAÇÃO:
+## Antes de inicializar a aplicação:
 
 1. Clone o repositório
   * `git clone git@github.com:dayvison-lima/project-pixels-art.git`
