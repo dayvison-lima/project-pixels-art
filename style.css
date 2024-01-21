@@ -1,10 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
+body{
+  background: url('./imgs/pixel-lofi-city-moewalls-com.gif') center/cover no-repeat fixed;
+  overflow-y: auto;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 .color{
     display: inline-block;
-    margin: 5px
+    margin: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
+
+.selected {
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1.5);
+    transform: scale(1.1); 
+  }
 
 .pixel{
     display: inline-block;
     margin: 0px;
+    margin-bottom: -5px;
 }
 
+.title{
+  color: black;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.pixel-board-container {
+  max-height: 70vh;  /* Define a altura máxima em relação à altura da viewport */
+}
+
+.pixel-board{
+    display: grid;
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
+    gap: 0px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 14px;
+    border: 1px solid #000;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+button:hover {
+    background-color: #ddd;
+  }
+
+.button-random-color{
+    background-color: #4caf50;
+    color: #fff;
+    margin-top: 10px;
+}
+
+#button-random-color:hover {
+    background-color: #45a049;
+  }
+
+.button-clear-color{
+    background-color: #f44336;
+    color: #fff;
+}
+
+.button-clear-board:hover {
+    background-color: #d32f2f;
+  }
