@@ -53,7 +53,7 @@ No projeto temos uma página em que o usuário pode criar um quadro de pixels de
 1. Clone o repositório
   * `git clone git@github.com:dayvison-lima/project-pixels-art.git`
   * Entre na pasta do repositório na sua máquina:
-    * `project-pixels-art`
+    * `cd project-pixels-art`
 
 2. Instale as dependências
    * `npm install`
